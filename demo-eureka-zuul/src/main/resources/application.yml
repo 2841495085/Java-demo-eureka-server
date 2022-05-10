@@ -1,0 +1,32 @@
+server:
+  port: 7007
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    register-with-eureka: true      #  是否向中心进行注册
+    fetch-registry: true            #  消费者应该取出数据
+    service-url:
+      defaultZone: http://server1:7000/eureka/
+  instance:
+    hostname: localhost
+
+# Zuul服务器最重要的作用就是转发对服务的调用请求。请求路由是指将请求的url映射到服务地址的方法
+# 可以通过zuul.routes来配置 Zuul服务器的路由请求
+# 下面的代码将所有的url路径格式为 /e-p/**的请求映射到eureka-provider1上、’
+  # 将url路径格式为/e-c/**的请求映射到 eureka-consumer1上
+zuul:
+  routes:    # 路由（转发）
+    e-p:
+      path: /e-p/**
+      serviceId: eureka-provider1
+    e-c:
+      path: /e-c/**
+      serviceId: eureka-consumer1
+
+yxwfilter:
+  ip:
+    whitelist: 172.20.10.2     # 指定白名单IP地址列表，以逗号分隔
+    whitelistenabled: true     # 指定是否启用白名单

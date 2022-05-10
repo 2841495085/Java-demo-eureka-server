@@ -1,0 +1,26 @@
+server:
+  port: 3333
+tomcat:
+  max-http-post-size: 8192
+
+spring:
+  profiles:
+    active: jdbc,redis,mail   # 外置jdbc、redis和mail配置文件
+  thymeleaf:
+    cache: false         # 热部署静态文件
+    encoding: UTF-8
+    mode: HTML5
+
+  main:
+    allow-circular-references: true   # 允许循环
+
+# MyBatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true   #开启驼峰命名匹配映射
+  mapper-locations: classpath:mapper/*.xml   #配置MyBatis的xml映射文件路径
+  type-aliases-package: com.qdc.demoeurekaauth_server.pojo  #配置XML映射文件中指定的实体类别名路径
+
+#浏览器cookie相关设置
+COOKIE:
+  VALIDITY: 1800  # 设置cookie默认时长为30分钟

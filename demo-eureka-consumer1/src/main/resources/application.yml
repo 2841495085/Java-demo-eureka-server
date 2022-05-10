@@ -1,0 +1,14 @@
+server:
+  port: 7003
+spring:
+  application:
+    name: eureka-consumer1
+
+eureka:
+  client:
+    register-with-eureka: true      #  是否向中心进行注册
+    fetch-registry: true            #  消费者应该取出数据
+    service-url:
+      defaultZone: http://server1:7000/eureka/,http://server2:7001/eureka/
+  instance:
+    hostname: localhost

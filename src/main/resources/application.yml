@@ -1,0 +1,24 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: eureka-server1
+
+eureka:
+  client:
+    register-with-eureka: false      #  是否将自己的信息注册到中心，因为是中心，所以不需要注册
+    fetch-registry: false            #  是否到中心抓取注册信息
+    service-url:
+#                   http://主机名:端口号/eureka/
+#                   http://${eureka.instance.hostname}:${server.port}/eureka/     另一种写法
+      defaultZone: http://server1:7001/eureka/
+  instance:
+    hostname: server1
+#    心跳机制属性
+    lease-renewal-interval-in-seconds: 20     #  指定客户端每隔多少秒发送心跳包给中心，默认为30
+    lease-expiration-duration-in-seconds: 120     #  设置每120秒刷新服务列表，指定客户端超过
+                                                      #  多少时间没有发送心跳包给中心，中心将其删除
+#    自我保护机制
+  server:
+    enable-self-preservation: false     #  是否启用自我保护机制，防止网络不好的情况下中心误删大量的注册实例，
+                                                #  启用时中心将会保护服务注册表中的信息，通常情况下建议关闭

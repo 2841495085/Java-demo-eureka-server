@@ -1,0 +1,17 @@
+server:
+  port: 7006
+spring:
+  application:
+    name: eureka-consumer-feign
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:7000/eureka/,http://server2:7001/eureka/
+
+  instance:
+#    将IP注册到 Eureka Server上，而如果不配置就是机器的主机名 localhost。
+#    hostname: localhost
+    prefer-ip-address: true
+
+
