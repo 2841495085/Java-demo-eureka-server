@@ -1,0 +1,14 @@
+server:
+  port: 9005
+spring:
+  application:
+    name: springcloud-config-server
+  cloud:
+    config:
+      server:
+        get:
+          uri: https://github.com/2841495085/Java-demo-eureka-server.git
+
+          search-paths: /demo-config-server/src/main/resources/
+          username: 2841495085
+          password: lshnzssbl99...
